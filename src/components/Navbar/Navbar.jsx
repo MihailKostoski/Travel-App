@@ -6,7 +6,7 @@ function Navbar() {
     setnavIsShown((navIsShown) => !navIsShown);
   };
   return (
-    <nav className="flex justify-between items-center h-20 px-4  top-0 left-0 z-10 w-full text-white bg-grey">
+    <nav className="flex justify-between items-center h-20 px-4  m-7top-0 left-0 z-10 w-full text-white bg-blueB">
       <h1>Beaches.</h1>
       <ul className="hidden md:flex md:gap-x-2">
         <li>

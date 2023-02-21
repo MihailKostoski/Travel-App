@@ -1,95 +1,105 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useState } from "react";
+//const data = ["Germany", "Austria", "Ausland", "Czech Republic"];
 
+const data = [
+  { id: 1, name: "Castoria" },
+  { id: 2, name: "Monarca" },
+  { id: 3, name: "Tino" },
+];
 function SearchBar() {
+  const [suggestions, setSuggestions] = useState([]);
+  const [suggestionIndex, setSuggestionIndex] = useState(0);
+  const [isActive, setIsActive] = useState(false);
+  const [value, setValue] = useState("");
+  console.log(data);
+  const handleChange = (e) => {
+    const query = e.target.value.toLowerCase();
+    setValue(query);
+    if (query.length > 1) {
+      const filterSuggestions = data.filter((suggestion) =>
+        suggestion.toString().toLowerCase().indexOf(query)
+      );
+      setIsActive(true);
+      setSuggestions(filterSuggestions);
+    } else {
+      setIsActive(false);
+    }
+  };
+
+  const handleClick = (e) => {
+    setSuggestions([]);
+    setValue(e.target.innerText);
+    setSuggestionsActive(false);
+  };
+
+  const handleKeyDown = (e) => {
+    // UP ARROW
+    if (e.keyCode === 38) {
+      if (suggestionIndex === 0) {
+        return;
+      }
+      setSuggestionIndex(suggestionIndex - 1);
+    }
+    // DOWN ARROW
+    else if (e.keyCode === 40) {
+      if (suggestionIndex - 1 === suggestions.length) {
+        return;
+      }
+      setSuggestionIndex(suggestionIndex + 1);
+    }
+    // ENTER
+    else if (e.keyCode === 13) {
+      setValue(suggestions[suggestionIndex]);
+      setSuggestionIndex(0);
+      setSuggestionsActive(false);
+    }
+  };
+
+  console.log(suggestions);
   return (
-    <div className="absolute left-0 right-0">
-      <div className="inline-flex flex-col justify-center relative text-gray-500">
-        <div className="relative">
-          <input
-            type="text"
-            className="p-2 pl-8 rounded border border-gray-200 bg-gray-200 focus:bg-white focus:outline-none focus:ring-2 focus:ring-yellow-600 focus:border-transparent"
-            placeholder="search..."
-            value=""
-          />
-          <svg
-            className="w-4 h-4 absolute left-2.5 top-3.5"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+    <div>
+      <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4 w-96">
+        <input
+          className="h-12 border-gray rounded-lg border-[1px]  outline-none w-full"
+          type="text"
+          value={value}
+          onKeyDown={handleKeyDown}
+          onChange={handleChange}
+          placeholder="Where to?"
+        />
+        {isActive && (
+          <ul
+            id="data"
+            className="bg-white w-full border-[1px] rounded-lg  shadow-lg p-4 absolute max-h-[200px] overflow-y-auto"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
-        </div>
-        <ul className="bg-white border border-gray-100 w-full mt-2">
-          <li className="pl-8 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
-            <svg
-              className="absolute w-4 h-4 left-2 top-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <b>Gar</b>dameer - Italië
-          </li>
-          <li className="pl-8 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
-            <svg
-              className="absolute w-4 h-4 left-2 top-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <b>Gar</b>da - Veneto - Italië
-          </li>
-          <li className="pl-8 pr-2 py-1 border-b-2 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
-            <svg
-              className="absolute w-4 h-4 left-2 top-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <b>Gar</b>da Hotel - Italië
-          </li>
-          <li className="pl-8 pr-2 py-1 border-gray-100 relative cursor-pointer hover:bg-yellow-50 hover:text-gray-900">
-            <svg
-              className="absolute w-4 h-4 left-2 top-2"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              />
-            </svg>
-            <b>Gar</b>dena Resort - Italië
-          </li>
-        </ul>
+            {suggestions.map((item) => {
+              return (
+                <li
+                  key={item.id}
+                  onClick={handleClick}
+                  className="min-h-10 w-full border-b-[1px] border-solid border-l-grey"
+                >
+                  {item.name}
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </div>
+    /* <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4 w-96">
+      <input
+        className="border-2 border-grey  h-10 px-5 pr-16  w-full rounded-lg text-sm focus:outline-none"
+        type="search"
+        name="search"
+        placeholder="Search"
+      />
+      <button
+        type="submit"
+        className="absolute right-0 top-0 mt-5 mr-4"
+      ></button>
+    </div>*/
   );
 }
 
