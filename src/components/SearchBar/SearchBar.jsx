@@ -1,91 +1,108 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-//const data = ["Germany", "Austria", "Ausland", "Czech Republic"];
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+const options = {
+  // method: "GET",
+  //url: "https://travel-advisor.p.rapidapi.com/locations/search",
+  params: {
+    //query: "munich",
+    limit: "4",
+    /* offset: "0",
+    units: "km",
+    location_id: "1",
+    currency: "USD",
+    sort: "relevance",
+    lang: "en_US",*/
+  },
+  headers: {
+    "X-RapidAPI-Key": "33cd884451msh63e77e0b0e4e5eep1e2adbjsnd4f06e3df30c",
+    "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
+  },
+};
 
-const data = [
-  { id: 1, name: "Castoria" },
-  { id: 2, name: "Monarca" },
-  { id: 3, name: "Tino" },
-];
 function SearchBar() {
-  const [suggestions, setSuggestions] = useState([]);
-  const [suggestionIndex, setSuggestionIndex] = useState(0);
-  const [isActive, setIsActive] = useState(false);
-  const [value, setValue] = useState("");
-  console.log(data);
-  const handleChange = (e) => {
-    const query = e.target.value.toLowerCase();
-    setValue(query);
-    if (query.length > 1) {
-      const filterSuggestions = data.filter((suggestion) =>
-        suggestion.toString().toLowerCase().indexOf(query)
-      );
-      setIsActive(true);
-      setSuggestions(filterSuggestions);
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleOnSearch = (string) => {
+    if (string !== "") {
+      axios
+        .get(
+          `https://travel-advisor.p.rapidapi.com/locations/search?query=${string}`,
+          options
+        )
+        .then(function (response) {
+          setSearchResults(response);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     } else {
-      setIsActive(false);
+      setSearchResults([]);
     }
   };
 
-  const handleClick = (e) => {
-    setSuggestions([]);
-    setValue(e.target.innerText);
-    setSuggestionsActive(false);
+  const Items = [
+    {
+      id: parseInt(searchResults.data?.data[0].result_object?.location_id),
+      name: searchResults.data?.data[0].result_object?.name.toString(),
+    },
+  ];
+
+  const handleOnHover = (result) => {
+    console.log(result);
   };
 
-  const handleKeyDown = (e) => {
-    // UP ARROW
-    if (e.keyCode === 38) {
-      if (suggestionIndex === 0) {
-        return;
-      }
-      setSuggestionIndex(suggestionIndex - 1);
-    }
-    // DOWN ARROW
-    else if (e.keyCode === 40) {
-      if (suggestionIndex - 1 === suggestions.length) {
-        return;
-      }
-      setSuggestionIndex(suggestionIndex + 1);
-    }
-    // ENTER
-    else if (e.keyCode === 13) {
-      setValue(suggestions[suggestionIndex]);
-      setSuggestionIndex(0);
-      setSuggestionsActive(false);
-    }
+  const handleOnSelect = (item) => {
+    console.log(item);
   };
 
-  console.log(suggestions);
+  const handleOnFocus = () => {
+    console.log("Focused");
+  };
+
+  const formatResult = (item) => {
+    if (item.name !== undefined) {
+      return (
+        <>
+          <span style={{ display: "block", textAlign: "left" }}>
+            {item.name}
+          </span>
+        </>
+      );
+    }
+
+    /* return (
+        <>
+          <span style={{ display: "block", textAlign: "left" }}>
+            {item.name}
+          </span>
+        </>
+      );
+    } else if (item.title) {
+      return (
+        <>
+          <span style={{ display: "block", textAlign: "left" }}>
+            {item.title}
+          </span>
+        </>
+      );
+    }*/
+  };
+
   return (
     <div>
       <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4 w-96">
-        <input
-          className="h-12 border-gray rounded-lg border-[1px]  outline-none w-full"
-          type="text"
-          value={value}
-          onKeyDown={handleKeyDown}
-          onChange={handleChange}
-          placeholder="Where to?"
-        />
-        {isActive && (
-          <ul
-            id="data"
-            className="bg-white w-full border-[1px] rounded-lg  shadow-lg p-4 absolute max-h-[200px] overflow-y-auto"
-          >
-            {suggestions.map((item) => {
-              return (
-                <li
-                  key={item.id}
-                  onClick={handleClick}
-                  className="min-h-10 w-full border-b-[1px] border-solid border-l-grey"
-                >
-                  {item.name}
-                </li>
-              );
-            })}
-          </ul>
-        )}
+        <div style={{ width: 400 }}>
+          <ReactSearchAutocomplete
+            items={Items}
+            onSearch={handleOnSearch}
+            onHover={handleOnHover}
+            onSelect={handleOnSelect}
+            onFocus={handleOnFocus}
+            autoFocus
+            formatResult={formatResult}
+          />
+        </div>
       </div>
     </div>
     /* <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4 w-96">

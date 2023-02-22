@@ -1,16 +1,13 @@
-import Destinations from "./components/Destinations/Destinations";
-import HeroMain from "./components/Hero/HeroMain";
-import Navbar from "./components/Navbar/Navbar";
-import Tabs from "./components/Tabs/Tabs";
-
+import { Home, Hotels } from "./Pages/pagesIndex";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
-    <>
-      <Navbar />
-      <Tabs />
-      <HeroMain />
-      <Destinations />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" exact element={<Home />} />
+        <Route path="/hotels" element={<Hotels />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
