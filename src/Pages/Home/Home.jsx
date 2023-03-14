@@ -1,17 +1,21 @@
 import React from "react";
+
 import {
   Tabs,
   Navbar,
   HeroMain,
   Destinations,
 } from "../../components/componentsIndex";
+import { ShopProvider } from "../../context";
 function Home() {
   return (
     <>
-      <Navbar />
-      <Tabs />
-      <HeroMain />
-      <Destinations />
+      <ShopProvider>
+        <Navbar />
+        <Tabs />
+        <HeroMain />
+        <Destinations />
+      </ShopProvider>
     </>
   );
 }

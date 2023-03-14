@@ -6,7 +6,7 @@ function HeroMain() {
   return (
     <div className="relative max-w-full mx-16 my-7 h-[380px]">
       <SearchBar />
-      <img src={cover} className="w-full h-full" />
+      {/* <img src={cover} className="w-full h-full" /> */}
     </div>
   );
 }
