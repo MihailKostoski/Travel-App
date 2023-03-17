@@ -1,30 +1,23 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Sidebar } from "../componentsIndex";
+import SearchBar from "../SearchBar/SearchBar";
 
 function Navbar() {
   const [navIsShown, setnavIsShown] = useState(false);
   const toggleNavIsShown = () => {
     setnavIsShown((navIsShown) => !navIsShown);
   };
+  const pathName = window.location.pathname;
+
   return (
     <nav className="flex justify-between items-center h-20 px-4  m-7top-0 left-0 z-10 w-full text-white bg-blueB">
-      <h1>Beaches.</h1>
-      <ul className="hidden md:flex md:gap-x-2">
-        <li>
-          <a href="">Home</a>
-        </li>
-        <li>
-          <a href="">Destinations</a>
-        </li>
-        <li>
-          <a href="">Travel</a>
-        </li>
-        <li>
-          <a href="">Views</a>
-        </li>
-        <li>
-          <a href="">Book</a>
-        </li>
-      </ul>
+      <Link to="/">Beaches.</Link>
+      {pathName !== "/" ? (
+        <div className="hidden md:flex relative ">
+          <SearchBar />
+        </div>
+      ) : null}
       <div className="hidden md:flex ">
         <svg
           xmlns="http://www.w3.org/2000/svg"

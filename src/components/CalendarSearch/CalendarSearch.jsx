@@ -3,16 +3,11 @@ import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-
-function CalendarSearch() {
+import { AiFillCalendar } from "react-icons/ai";
+import { BsPersonPlus } from "react-icons/bs";
+function CalendarSearch({ date, setDate }) {
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
+
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
@@ -30,35 +25,46 @@ function CalendarSearch() {
 
   return (
     <>
-      <div className="flex justify-between items-center h-20 px-4 bg-blueB m-7top-0 left-0 z-10 w-full text-white">
-        <div className=" flex item-center gap-2.5">
-          {/* <FontAwesomeIconicon={faCalendarDays} className="headerIcon"/> */}
+      <div className="flex justify-center gap-20 items-center h-20 px-4 m-7top-0 left-0 z-10 w-full text-white">
+        <div className="relative ">
           <span
             onClick={() => setOpenDate(!openDate)}
-            className="headerSearchText cursor-pointer text-gray bg-white"
-          >{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
-            date[0].endDate,
-            "MM/dd/yyyy"
-          )}`}</span>
+            className="headerSearchText cursor-pointer  flex  items-center gap-0.5 text-gray border border-solid p-5 bg-white"
+          >
+            {" "}
+            <div className=" flex  w-6 h-6 mr-1">
+              <AiFillCalendar className="w-full h-full bg-blueB text-white" />
+            </div>
+            {`${format(date[0]?.startDate, "MM/dd/yyyy")} to ${format(
+              date[0].endDate,
+              "MM/dd/yyyy"
+            )}`}
+          </span>
           {openDate && (
             <DateRange
               editableDateInputs={true}
               onChange={(item) => setDate([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={date}
-              className="date bg-blueB absolute top-14 z-2"
+              className="date bg-blueB absolute top-20 z-2"
               minDate={new Date()}
             />
           )}
         </div>
-        <div className=" flex item-center gap-2.5">
-          {/* <FontAwesomeIcon icon={faPerson} className="headerIcon" /> */}
+        {/* //////////////////////////////////////////// */}
+        <div className=" relative ">
           <span
             onClick={() => setOpenOptions(!openOptions)}
-            className="headerSearchText cursor-pointer text-gray bg-white"
-          >{`${options.adult} adult · ${options.children} children · ${options.room} room`}</span>
+            className="headerSearchText cursor-pointer flex  items-center gap-0.5 text-gray  border border-solid p-5 bg-white"
+          >
+            {" "}
+            <div className="flex w-6 h-6 mr-1">
+              <BsPersonPlus className="w-full h-full bg-blueB text-white" />
+            </div>
+            {`${options.adult} adult · ${options.children} children · ${options.room} room`}
+          </span>
           {openOptions && (
-            <div className=" absolute top-14 bg-blueB text-gray rounded-5 shadow-lg z-2 ">
+            <div className=" absolute top-20 bg-blueB text-gray rounded-5 shadow-lg z-2 ">
               <div className=" flex justify-between my-10 px-10">
                 <span className="optionText">Adult</span>
                 <div className=" flex items-center gap-10 text-black text-sm">
@@ -78,7 +84,7 @@ function CalendarSearch() {
                   </button>
                 </div>
               </div>
-              <div className=" flex justify-between my-10 px-10">
+              <div className="  flex justify-between my-10 px-10">
                 <span className="optionText">Children</span>
                 <div className="  flex items-center gap-10 text-black text-sm">
                   <button
@@ -118,9 +124,6 @@ function CalendarSearch() {
               </div>
             </div>
           )}
-        </div>
-        <div className=" flex item-center gap-2.5">
-          <button className="headerBtn">Search</button>
         </div>
       </div>
     </>

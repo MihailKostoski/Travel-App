@@ -4,9 +4,9 @@ import SearchBar from "../SearchBar/SearchBar";
 
 function HeroMain() {
   return (
-    <div className="relative max-w-full mx-16 my-7 h-[380px]">
+    <div className=" relative flex justify-center items-center w-screen  h-[380px]">
       <SearchBar />
-      {/* <img src={cover} className="w-full h-full" /> */}
+      <img src={cover} className="w-3/5 h-full border " />
     </div>
   );
 }

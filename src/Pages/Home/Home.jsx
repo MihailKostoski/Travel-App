@@ -6,16 +6,14 @@ import {
   HeroMain,
   Destinations,
 } from "../../components/componentsIndex";
-import { ShopProvider } from "../../context";
+
 function Home() {
   return (
     <>
-      <ShopProvider>
-        <Navbar />
-        <Tabs />
-        <HeroMain />
-        <Destinations />
-      </ShopProvider>
+      <Navbar />
+      <Tabs />
+      <HeroMain />
+      <Destinations />
     </>
   );
 }

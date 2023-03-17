@@ -16,10 +16,10 @@ export const shopReducer = (state, action) => {
         ...state,
         category: "restaurant",
       };
-    case "VACATION RENTALS":
+    case "VACATION_RENTALS":
       return {
         ...state,
-        category: "rentals",
+        category: "vacation",
       };
     // case "SET_GEO_ID":
     //   return {

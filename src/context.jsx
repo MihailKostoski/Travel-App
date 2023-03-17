@@ -20,7 +20,7 @@ export const ShopProvider = ({ children }) => {
   };
   const vacationRentals = () => {
     dispatch({
-      type: "VACATION RENTALS",
+      type: "VACATION_RENTALS",
     });
   };
   // const setGeoId = (geoId) => {

@@ -1,10 +1,17 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import axios from "axios";
 import FormatResults from "./FormatResults";
 import { useState } from "react";
 import useShop from "../../context";
-import { useNavigate } from "react-router-dom";
+
 // import { data } from "./object";
 import { restaurant } from "../../restuarant";
 import { hotels } from "./hotels";
@@ -15,10 +22,8 @@ import { hotels } from "./hotels";
 //   },
 // };
 function AutoComplete() {
-  const navigate = useNavigate();
-
   const [restaurantsD, setRestaurantsD] = useState([]);
-
+  const searchBarRef = useRef(null);
   const [hotelsD, setHotelsD] = useState();
   const { category } = useShop();
   console.log(category);
@@ -92,8 +97,8 @@ function AutoComplete() {
 
   return (
     <div>
-      <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4 w-96">
-        <div style={{ width: 600 }}>
+      <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4  w-64 md:w-96">
+        <div className="w-full">
           <ReactSearchAutocomplete
             items={
               hotelsD?.length > 0
@@ -126,6 +131,9 @@ function AutoComplete() {
             onHover={handleOnHover}
             onSelect={handleOnSelect}
             autoFocus
+            styling={{
+              backgroundColor: "black",
+            }}
             onFocus={handleOnFocus}
             formatResult={formatResult}
           />

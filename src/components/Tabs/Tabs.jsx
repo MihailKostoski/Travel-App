@@ -10,7 +10,7 @@ import { TfiWorld } from "react-icons/tfi";
 import useShop from "../../context";
 
 function Tabs() {
-  const { hotels, thingsToDo, restauRants } = useShop();
+  const { hotels, vacationRentals, restauRants } = useShop();
 
   return (
     <>
@@ -26,25 +26,25 @@ function Tabs() {
             </span>
           </div>
         </div>
-        <div
-          onClick={() => thingsToDo()}
-          className=" flex items-center w-36  hover:bg-blueB hover:text-white justify-center border rounded text-center h-16"
-        >
-          <div className="flex justify-between gap-4 items-center  px-8 py-2">
-            <span>Things to do</span>
-            <span>
-              <MdTravelExplore />
-            </span>
-          </div>
-        </div>
+
         <div className=" flex items-center w-36 hover:bg-blueB  hover:text-white justify-center  border rounded text-center h-16  ">
-          <div className="flex justify-between gap-4 items-center px-6 py-2">
+          <div
+            onClick={() => vacationRentals()}
+            className="flex justify-between gap-4 items-center px-6 py-2"
+          >
             <span>Vacation Rentals</span>
             <span>
               <RiHome3Line />
             </span>
           </div>
         </div>
+        <div className=" flex items-center w-36 hover:bg-blueB  hover:text-white justify-center  border rounded text-center h-16  ">
+          <div className="flex justify-between gap-4 items-center px-6 py-2">
+            <span>Cruises</span>
+            <span>{/* <RiHome3Line /> */}</span>
+          </div>
+        </div>
+
         <div className=" flex items-center w-36 hover:bg-blueB hover:text-white justify-center  border rounded text-center h-16 ">
           <div
             onClick={() => restauRants()}
@@ -53,22 +53,6 @@ function Tabs() {
             <span>Restaurants</span>
             <span>
               <BiRestaurant />
-            </span>
-          </div>
-        </div>
-        <div className=" flex items-center w-36 hover:bg-blueB hover:text-white justify-center border rounded text-center h-16 ">
-          <div className="flex justify-between gap-4 items-center  px-8 py-2">
-            <span>Travel Stories</span>
-            <span>
-              <TfiWorld />
-            </span>
-          </div>
-        </div>
-        <div className="  flex items-center w-36 hover:bg-blueB hover:text-white justify-center border rounded text-center h-16">
-          <div className="flex justify-between gap-4 items-center px-9 py-5">
-            <span>More</span>
-            <span>
-              <FiMoreVertical />
             </span>
           </div>
         </div>
