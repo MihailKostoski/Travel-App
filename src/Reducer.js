@@ -1,8 +1,3 @@
-export const initialState = {
-  category: "hotels",
-  //geoId: undefined,
-};
-
 export const shopReducer = (state, action) => {
   switch (action.type) {
     case "HOTELS":
@@ -19,7 +14,13 @@ export const shopReducer = (state, action) => {
     case "VACATION_RENTALS":
       return {
         ...state,
-        category: "vacation",
+        category: "rentals",
+      };
+
+    case "SET_DATE":
+      return {
+        ...state,
+        date: action.payload,
       };
     // case "SET_GEO_ID":
     //   return {

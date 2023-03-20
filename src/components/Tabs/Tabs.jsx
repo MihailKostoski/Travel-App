@@ -10,7 +10,7 @@ import { TfiWorld } from "react-icons/tfi";
 import useShop from "../../context";
 
 function Tabs() {
-  const { hotels, vacationRentals, restauRants } = useShop();
+  const { hotels, vacationRentals, restauRants, category } = useShop();
 
   return (
     <>
@@ -18,7 +18,9 @@ function Tabs() {
         <div className=" flex items-center w-36 hover:bg-blueB hover:text-white justify-center border rounded text-center h-16">
           <div
             onClick={() => hotels()}
-            className="flex justify-between gap-4 items-center px-8 py-5"
+            className={`flex justify-between gap-4 items-center  px-8 py-5 hover:bg-blueB ${
+              category === "hotels" ? "bg-blueB text-white" : "bg-white"
+            }`}
           >
             <span>Hotels</span>
             <span>
@@ -30,7 +32,9 @@ function Tabs() {
         <div className=" flex items-center w-36 hover:bg-blueB  hover:text-white justify-center  border rounded text-center h-16  ">
           <div
             onClick={() => vacationRentals()}
-            className="flex justify-between gap-4 items-center px-6 py-2"
+            className={`flex justify-between gap-4 items-center px-8 py-5 hover:bg-blueB ${
+              category === "rentals" ? "bg-blueB text-white" : "bg-white"
+            }`}
           >
             <span>Vacation Rentals</span>
             <span>
@@ -38,17 +42,19 @@ function Tabs() {
             </span>
           </div>
         </div>
-        <div className=" flex items-center w-36 hover:bg-blueB  hover:text-white justify-center  border rounded text-center h-16  ">
+        {/* <div className=" flex items-center w-36 hover:bg-blueB  hover:text-white justify-center  border rounded text-center h-16  ">
           <div className="flex justify-between gap-4 items-center px-6 py-2">
             <span>Cruises</span>
-            <span>{/* <RiHome3Line /> */}</span>
+            <span><RiHome3Line /></span>
           </div>
-        </div>
+        </div> */}
 
         <div className=" flex items-center w-36 hover:bg-blueB hover:text-white justify-center  border rounded text-center h-16 ">
           <div
             onClick={() => restauRants()}
-            className="flex justify-between gap-4 items-center  px-4 py-5"
+            className={`flex justify-between gap-4 items-center px-8 py-5 hover:bg-blueB ${
+              category === "restaurant" ? "bg-blueB text-white" : "bg-white"
+            }`}
           >
             <span>Restaurants</span>
             <span>

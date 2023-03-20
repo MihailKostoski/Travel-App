@@ -13,7 +13,6 @@ function Home() {
       <Navbar />
       <Tabs />
       <HeroMain />
-      <Destinations />
     </>
   );
 }

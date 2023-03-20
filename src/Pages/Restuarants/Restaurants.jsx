@@ -22,7 +22,7 @@ function Restaurants() {
 
   const pathName = window.location.pathname;
   useEffect(() => {
-    setRestaurantData(restaurants);
+    //setRestaurantData(restaurants);
     if (
       pathName !== "/" &&
       category === "restaurant" &&
@@ -39,22 +39,22 @@ function Restaurants() {
     }
     if (
       pathName !== "/" &&
-      category === "vacation" &&
+      category === "rentals" &&
       pathName !== "/vacationRentals/27470"
     ) {
       navigate("/vacationRentals/274707");
     }
-    // axios
-    //   .get(
-    //     `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${restaurantId}`,
-    //     options
-    //   )
-    //   .then(function (response) {
-    //     setRestaurantData(response.data);
-    //   })
-    //   .catch(function (error) {
-    //     console.error(error);
-    //   });
+    axios
+      .get(
+        `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${restaurantId}`,
+        options
+      )
+      .then(function (response) {
+        setRestaurantData(response.data);
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   }, [restaurantId, pathName, category, navigate]);
   return (
     <>

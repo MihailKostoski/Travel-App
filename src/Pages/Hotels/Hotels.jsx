@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-//import { hotels } from "../../components/SearchBar/hotels";
+import { hotels } from "../../components/SearchBar/hotels";
 import { CalendarSearch } from "../../components/componentsIndex";
 import ListHRV from "../../components/ListHRV/ListHRV";
 import { hotelFilter } from "../../components/SearchBar/hotelsFilter";
@@ -27,17 +27,10 @@ function Hotels() {
   const { hotelId } = useParams();
   const [dataList, setDataList] = useState();
   const [filterHotels, setFilterHotels] = useState();
-  const { category } = useShop();
+  const { category, date } = useShop();
   const navigate = useNavigate();
-  const [date, setDate] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: "selection",
-    },
-  ]);
 
-  console.log("date");
+  console.log(date, "date");
   const pathName = window.location.pathname;
   let id = parseInt("274707");
 
@@ -65,7 +58,7 @@ function Hotels() {
     }
     if (
       pathName !== "/" &&
-      category === "vacation" &&
+      category === "rentals" &&
       pathName !== "/vacationRentals/274707"
     ) {
       navigate("/vacationRentals/274707");
@@ -98,7 +91,7 @@ function Hotels() {
           <span className="flex justify-center text-lg p-4">
             Enter dates to find the best prices
           </span>
-          <CalendarSearch date={date} setDate={setDate} />
+          <CalendarSearch />
         </div>
 
         <ListHRV

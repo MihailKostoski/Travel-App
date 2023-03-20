@@ -1,11 +1,23 @@
-import { createContext, useReducer, useContext } from "react";
-import initialState from "./Reducer";
+import { createContext, useReducer, useContext, useEffect } from "react";
+
 import shopReducer from "./Reducer";
 
-export const TabsContext = createContext(initialState);
+const initial = {
+  category: "hotels",
+  date: [
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: "selection",
+    },
+  ],
+  //geoId: undefined,
+};
+
+export const TabsContext = createContext(initial);
 
 export const ShopProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(shopReducer, initialState);
+  const [state, dispatch] = useReducer(shopReducer, initial);
 
   const hotels = () => {
     dispatch({
@@ -23,6 +35,13 @@ export const ShopProvider = ({ children }) => {
       type: "VACATION_RENTALS",
     });
   };
+  const setDate = (date) => {
+    dispatch({
+      type: "SET_DATE",
+      payload: date,
+    });
+  };
+
   // const setGeoId = (geoId) => {
   //   console.log(geoId);
   //   dispatch({
@@ -35,7 +54,8 @@ export const ShopProvider = ({ children }) => {
     category: state.category,
     state,
     hotels,
-
+    date: state.date,
+    setDate,
     restauRants,
     vacationRentals,
   };

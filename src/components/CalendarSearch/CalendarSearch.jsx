@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { AiFillCalendar } from "react-icons/ai";
 import { BsPersonPlus } from "react-icons/bs";
-function CalendarSearch({ date, setDate }) {
+import useShop from "../../context";
+function CalendarSearch({}) {
   const [openDate, setOpenDate] = useState(false);
-
+  const { date, setDate } = useShop();
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
@@ -22,6 +23,7 @@ function CalendarSearch({ date, setDate }) {
       };
     });
   };
+  console.log(date, "date");
 
   return (
     <>
@@ -36,7 +38,7 @@ function CalendarSearch({ date, setDate }) {
               <AiFillCalendar className="w-full h-full bg-blueB text-white" />
             </div>
             {`${format(date[0]?.startDate, "MM/dd/yyyy")} to ${format(
-              date[0].endDate,
+              date[0]?.endDate,
               "MM/dd/yyyy"
             )}`}
           </span>
@@ -51,7 +53,7 @@ function CalendarSearch({ date, setDate }) {
             />
           )}
         </div>
-        {/* //////////////////////////////////////////// */}
+
         <div className=" relative ">
           <span
             onClick={() => setOpenOptions(!openOptions)}

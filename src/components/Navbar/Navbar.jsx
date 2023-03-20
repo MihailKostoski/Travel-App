@@ -56,7 +56,7 @@ function Navbar() {
           strokeWidth={1.5}
           stroke="currentColor"
           className="w-6 h-6 md:hidden"
-          onClick={toggleNavIsShown}
+          // onClick={toggleNavIsShown}
         >
           <path
             strokeLinecap="round"
@@ -65,10 +65,9 @@ function Navbar() {
           />
         </svg>
       )}
-      {navIsShown && (
+      {/* {navIsShown && (
         <div className="md:hidden absolute z-10 top-0 left-0 w-full bg-gray-100/90 text-black px-4 py-6">
           <div className="flex justify-between">
-            <h1>Beaches.</h1>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -86,7 +85,7 @@ function Navbar() {
             </svg>
           </div>
           <ul className=" mb-4">
-            <li className="border-b-2 border-b-gray-600">
+             <li className="border-b-2 border-b-gray-600">
               <a href="">Home</a>
             </li>
             <li className="border-b-2 border-b-gray-600">
@@ -100,12 +99,12 @@ function Navbar() {
             </li>
             <li className="border-b-2 border-b-gray-600">
               <a href="">Book</a>
-            </li>
+            </li> 
           </ul>
           <button className="w-full mb-4 btn">Search</button>
           <button className="w-full mb-4 btn">Account</button>
         </div>
-      )}
+      )} */}
     </nav>
   );
 }

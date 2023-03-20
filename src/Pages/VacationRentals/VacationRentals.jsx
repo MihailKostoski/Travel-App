@@ -34,7 +34,7 @@ function VacationRentals() {
     }
     if (
       pathName !== "/" &&
-      category === "vacation" &&
+      category === "rentals" &&
       pathName !== "/vacationRentals/274707"
     ) {
       navigate("/vacationRentals/274707");
