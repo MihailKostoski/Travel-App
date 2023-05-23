@@ -1,102 +1,78 @@
-import { useState, useRef, useEffect } from "react";
-import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
-// Data
+import React from "react";
 
-const Carousel = ({ singleItem }) => {
-  const maxScrollWidth = useRef(0);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const carousel = useRef(null);
-
-  const movePrev = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex((prevState) => prevState - 1);
-    }
-  };
-
-  const moveNext = () => {
-    if (
-      carousel.current !== null &&
-      carousel.current.offsetWidth * currentIndex <= maxScrollWidth.current
-    ) {
-      setCurrentIndex((prevState) => prevState + 1);
-    }
-  };
-
-  const isDisabled = (direction) => {
-    if (direction === "prev") {
-      return currentIndex <= 0;
-    }
-
-    if (direction === "next" && carousel.current !== null) {
-      return (
-        carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
-      );
-    }
-
-    return false;
-  };
-
-  useEffect(() => {
-    if (carousel !== null && carousel.current !== null) {
-      carousel.current.scrollLeft = carousel.current.offsetWidth * currentIndex;
-    }
-  }, [currentIndex]);
-
-  useEffect(() => {
-    maxScrollWidth.current = carousel.current
-      ? carousel.current.scrollWidth - carousel.current.offsetWidth
-      : 0;
-  }, []);
-
+function Carousel() {
   return (
-    <div className="carousel my-12 mx-auto">
-      <div className="relative overflow-hidden">
-        <div className="flex justify-between absolute top left w-full h-full">
-          <button
-            onClick={movePrev}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-            disabled={isDisabled("prev")}
-          >
-            <AiOutlineLeft />
-            <span className="sr-only">Prev</span>
-          </button>
-          <button
-            onClick={moveNext}
-            className="hover:bg-blue-900/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
-            disabled={isDisabled("next")}
-          >
-            <AiOutlineRight />
-            <span className="sr-only">Next</span>
-          </button>
+    <>
+      <div
+        id="default-carousel"
+        className="relative w-full"
+        data-carousel="slide"
+      >
+        <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+          <div className="hidden duration-700 ease-in-out" data-carousel-item>
+            <img
+              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..."
+            />
+          </div>
+
+          <div className="hidden duration-700 ease-in-out" data-carousel-item>
+            <img
+              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..."
+            />
+          </div>
+
+          <div className="hidden duration-700 ease-in-out" data-carousel-item>
+            <img
+              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..."
+            />
+          </div>
+          <div className="hidden duration-700 ease-in-out" data-carousel-item>
+            <img
+              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..."
+            />
+          </div>
+
+          <div className="hidden duration-700 ease-in-out" data-carousel-item>
+            <img
+              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              alt="..."
+            />
+          </div>
         </div>
-        <div
-          ref={carousel}
-          className="carousel-container relative flex gap-1 overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0"
+
+        <div className="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+          <button type="button" className="w-3 h-3 rounded-full"></button>
+          <button type="button" className="w-3 h-3 rounded-full"></button>
+          <button type="button" className="w-3 h-3 rounded-full"></button>
+          <button type="button" className="w-3 h-3 rounded-full"></button>
+          <button type="button" className="w-3 h-3 rounded-full"></button>
+        </div>
+
+        <button
+          type="button"
+          className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          data-carousel-prev
         >
-          {singleItem?.photos?.map((photo) => {
-            return (
-              <div
-                key={photo.urlTemplate}
-                className="carousel-item text-center relative w-64 h-64 snap-start"
-              >
-                <div className="h-full w-full aspect-square block bg-origin-padding bg-left-top bg-cover bg-no-repeat z-0">
-                  <img
-                    className="w-full aspect-square"
-                    src={
-                      photo.urlTemplate
-                        .replace("{width}", "300")
-                        .replace("{height}", "300") || ""
-                    }
-                    alt=""
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <span className="sr-only">Previous</span>
+          </span>
+        </button>
+        <button
+          type="button"
+          className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+          data-carousel-next
+        >
+          <span className="inline-flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10 bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+            <span className="sr-only">Next</span>
+          </span>
+        </button>
       </div>
-    </div>
+    </>
   );
-};
+}
 
 export default Carousel;

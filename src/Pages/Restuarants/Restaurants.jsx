@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Tabs from "../../components/Tabs/Tabs";
 import useShop from "../../context";
+
 const options = {
   headers: {
     "X-RapidAPI-Key": "33cd884451msh63e77e0b0e4e5eep1e2adbjsnd4f06e3df30c",
@@ -22,7 +23,7 @@ function Restaurants() {
 
   const pathName = window.location.pathname;
   useEffect(() => {
-    //setRestaurantData(restaurants);
+    setRestaurantData(restaurants);
     if (
       pathName !== "/" &&
       category === "restaurant" &&
@@ -44,17 +45,17 @@ function Restaurants() {
     ) {
       navigate("/vacationRentals/274707");
     }
-    axios
-      .get(
-        `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${restaurantId}`,
-        options
-      )
-      .then(function (response) {
-        setRestaurantData(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    // axios
+    //   .get(
+    //     `https://tripadvisor16.p.rapidapi.com/api/v1/restaurant/searchRestaurants?locationId=${restaurantId}`,
+    //     options
+    //   )
+    //   .then(function (response) {
+    //     setRestaurantData(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
   }, [restaurantId, pathName, category, navigate]);
   return (
     <>
@@ -64,8 +65,8 @@ function Restaurants() {
         </div>
 
         <Tabs />
-        <Sidebar />
-        <ListHRV restaurantData={restaurantData} />
+
+        <ListHRV restaurantData={restaurantData} f />
       </div>
     </>
   );

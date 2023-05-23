@@ -14,12 +14,14 @@ function Tabs() {
 
   return (
     <>
-      <div className="flex  max-w-full   flex-row flex-nowrap overflow-x-auto gap-x-8 justify-center  m-7">
-        <div className=" flex items-center w-36 hover:bg-blueB hover:text-white justify-center border rounded text-center h-16">
+      <div className="flex w-full flex-row flex-nowrap overflow-x-auto gap-x-8 justify-center my-4">
+        <div className="flex items-center  w-32  h-16  hover:text-greenLight justify-center text-center md:w-36  md:h-20">
           <div
             onClick={() => hotels()}
-            className={`flex justify-between gap-4 items-center  px-8 py-5 hover:bg-blueB ${
-              category === "hotels" ? "bg-blueB text-white" : "bg-white"
+            className={`flex justify-center h-full w-full  rounded-md gap-4 items-center px-8 py-5  ${
+              category === "hotels"
+                ? "bg-gradient-to-t from-greenLight via-green to-greenLight text-greenLight"
+                : "bg-gradient-to-t from-greenLight via-green to-greenLight"
             }`}
           >
             <span>Hotels</span>
@@ -29,11 +31,13 @@ function Tabs() {
           </div>
         </div>
 
-        <div className=" flex items-center w-36 hover:bg-blueB  hover:text-white justify-center  border rounded text-center h-16  ">
+        <div className="flex items-center   w-32  h-16   hover:text-white justify-center   rounded text-center  md:w-36  md:h-20">
           <div
             onClick={() => vacationRentals()}
-            className={`flex justify-between gap-4 items-center px-8 py-5 hover:bg-blueB ${
-              category === "rentals" ? "bg-blueB text-white" : "bg-white"
+            className={`flex justify-center h-full w-full rounded-md gap-4 items-center px-8 py-5 ${
+              category === "rentals"
+                ? "bg-gradient-to-t from-greenLight via-green to-greenLight text-greenLight"
+                : "bg-gradient-to-t from-greenLight via-green to-greenLight"
             }`}
           >
             <span>Vacation Rentals</span>
@@ -49,11 +53,13 @@ function Tabs() {
           </div>
         </div> */}
 
-        <div className=" flex items-center w-36 hover:bg-blueB hover:text-white justify-center  border rounded text-center h-16 ">
+        <div className="flex items-center  w-32  h-16 hover:text-white justify-center rounded text-center  md:w-36  md:h-20 ">
           <div
             onClick={() => restauRants()}
-            className={`flex justify-between gap-4 items-center px-8 py-5 hover:bg-blueB ${
-              category === "restaurant" ? "bg-blueB text-white" : "bg-white"
+            className={`flex justify-center  h-full w-full rounded-md gap-4 items-center px-8 py-5 ${
+              category === "restaurant"
+                ? "bg-gradient-to-t from-greenLight via-green to-greenLight text-greenLight"
+                : "bg-gradient-to-t from-greenLight via-green to-greenLight"
             }`}
           >
             <span>Restaurants</span>

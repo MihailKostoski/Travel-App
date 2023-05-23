@@ -42,6 +42,7 @@ function Hotels() {
   });
 
   useEffect(() => {
+    setDataList(hotels);
     if (
       pathName !== "/" &&
       category === "restaurant" &&
@@ -64,24 +65,25 @@ function Hotels() {
       navigate("/vacationRentals/274707");
     }
 
-    axios
-      .get(
-        `https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchHotels?geoId=${"187309"}&checkIn=${checkIn}&checkOut=${checkOut}`,
-        options
-      )
-      .then(function (response) {
-        setDataList(response.data);
-      })
+    // axios
+    //   .get(
+    //     `https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchHotels?geoId=${"187309"}&checkIn=${checkIn}&checkOut=${checkOut}`,
+    //     options
+    //   )
+    //   .then(function (response) {
+    //     setDataList(response.data);
+    //   })
 
-      .catch(function (error) {
-        console.error(error);
-      });
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
   }, [hotelId, pathName, category, navigate, date]);
 
   return (
     <>
       <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-white dark:bg-gray-700 text-black dark:text-white">
         <Navbar />
+
         <Tabs />
         <div className="h-1/4  w-screen border border-solid border-grey flex flex-col justify-center items-center">
           <h1 className="flex justify-center text-3xl p-5">

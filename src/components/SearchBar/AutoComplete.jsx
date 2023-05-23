@@ -108,45 +108,52 @@ function AutoComplete() {
 
   return (
     <div>
-      <div className="absolute top-1/4 left-2/4 -translate-y-2/4 -translate-x-2/4  w-64 md:w-96">
-        <div className="w-full cursor-pointer">
-          <ReactSearchAutocomplete
-            items={
-              hotelsD?.length > 0
-                ? hot
-                : undefined || restaurantsD?.length > 0
-                ? rw
-                : undefined || vacationD?.length > 0
-                ? vr
-                : undefined
-            }
-            inputDebounce={400}
-            includeMatches
-            minMatchCharLength={2}
-            fuseOptions={{
-              isCaseSensitive: false,
-              includeScore: false,
-              shouldSort: true,
-              includeMatches: false,
-              findAllMatches: false,
-              minMatchCharLength: 1,
-              location: 0,
-              threshold: 0.6,
-              distance: 100,
-              useExtendedSearch: false,
-              ignoreLocation: false,
-              ignoreFieldNorm: false,
-              fieldNormWeight: 1,
-              keys: ["name"],
-            }}
-            resultStringKeyName="name"
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            autoFocus
-            onFocus={handleOnFocus}
-            formatResult={formatResult}
-          />
+      <div className="w-screen">
+        <div className="flex flex-row items-center justify-center">
+          <div className="w-[50%] ">
+            <ReactSearchAutocomplete
+              items={
+                hotelsD?.length > 0
+                  ? hot
+                  : undefined || restaurantsD?.length > 0
+                  ? rw
+                  : undefined || vacationD?.length > 0
+                  ? vr
+                  : undefined
+              }
+              inputDebounce={400}
+              includeMatches
+              minMatchCharLength={2}
+              fuseOptions={{
+                isCaseSensitive: false,
+                includeScore: false,
+                shouldSort: true,
+                includeMatches: false,
+                findAllMatches: false,
+                minMatchCharLength: 1,
+                location: 0,
+                threshold: 0.6,
+                distance: 100,
+                useExtendedSearch: false,
+                ignoreLocation: false,
+                ignoreFieldNorm: false,
+                fieldNormWeight: 1,
+                keys: ["name"],
+              }}
+              styling={{
+                iconColor: "#ff9f1c",
+                height: "45px",
+                border: "1px solid #2ec4b6",
+              }}
+              resultStringKeyName="name"
+              onSearch={handleOnSearch}
+              onHover={handleOnHover}
+              onSelect={handleOnSelect}
+              autoFocus
+              onFocus={handleOnFocus}
+              formatResult={formatResult}
+            />
+          </div>
         </div>
       </div>
     </div>

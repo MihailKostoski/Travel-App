@@ -10,9 +10,11 @@ import {
 function Home() {
   return (
     <>
-      <Navbar />
-      <Tabs />
-      <HeroMain />
+      <div classNames="">
+        <Navbar />
+        <Tabs />
+        <HeroMain />
+      </div>
     </>
   );
 }

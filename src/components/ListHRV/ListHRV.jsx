@@ -1,7 +1,8 @@
+import { all } from "axios";
 import React, { useEffect, useState } from "react";
 
-import HotelsFiltered from "./HotelsFiltered";
-import RentalList from "./RentalList";
+import HotelsFiltered from "./Hotels/HotelsFiltered";
+import RentalList from "./Rental/RentalList";
 import RestaurantList from "./RestaurantList";
 function ListHRV({
   hotelId,
@@ -14,18 +15,42 @@ function ListHRV({
   const [data, setData] = useState();
 
   let rest = restaurantData?.data?.data;
-  let rentalV = vacationData?.data.rentals.rentals;
-  console.log(dataList);
+  let rentalV = vacationData?.data.rentals?.rentals;
+  let filterRentals = vacationData?.data?.filters;
+
   let List = dataList?.data.data;
-  console.log(List);
   const filteredList = [];
   const unfilteredList = [];
 
+  const filteredListRental = [];
+  const unfilteredListRentals = [];
+
+  const rentalFiltered = rentalV?.filter((rentalItem) => {
+    let r = rentalItem?.rental.quickView.amenities.map((i) => {
+      return i.value.localizedText;
+    });
+    let maped = r.map((i) => {
+      return i.toLowerCase();
+    });
+
+    const includes = sort && maped?.includes(sort?.toLowerCase());
+    if (includes) {
+      filteredListRental.push(rentalItem);
+    } else if (!maped?.includes(sort?.toLowerCase()) || !sort) {
+      return unfilteredListRentals.push(rentalItem);
+    }
+  });
+  console.log(rentalFiltered);
+  console.log(filteredListRental, "first");
+  console.log(unfilteredListRentals, "second unfiltered");
+
+  ///////////////////////////////////////////
+
   const listFiltered = List?.filter((hotelItem) => {
     const includesSort =
-      hotelItem.primaryInfo !== null &&
+      hotelItem?.primaryInfo !== null &&
       sort &&
-      hotelItem.primaryInfo.toLowerCase().includes(sort?.toLowerCase());
+      hotelItem?.primaryInfo.toLowerCase().includes(sort?.toLowerCase());
 
     if (includesSort) {
       filteredList.push(hotelItem);
@@ -40,9 +65,6 @@ function ListHRV({
     return includesSort;
   });
 
-  console.log(filteredList, "check");
-  console.log(unfilteredList, "ctwo");
-
   return (
     <>
       {listFiltered ? (
@@ -55,8 +77,15 @@ function ListHRV({
         />
       ) : rest ? (
         <RestaurantList rest={rest} />
-      ) : rentalV ? (
-        <RentalList sort={sort} setSort={setSort} rentalV={rentalV} />
+      ) : rentalFiltered ? (
+        <RentalList
+          sort={sort}
+          filteredListRental={filteredListRental}
+          unfilteredListRentals={unfilteredListRentals}
+          setSort={setSort}
+          // rentalFiltered={rentalFiltered}
+          filterRentals={filterRentals}
+        />
       ) : null}
     </>
   );

@@ -1,12 +1,12 @@
 import React from "react";
-import cover from "../../resources/cover.jpg";
+import bgCover from "../../resources/bgCover.jpg";
 import SearchBar from "../SearchBar/SearchBar";
 
 function HeroMain() {
   return (
-    <div className=" relative flex justify-center items-center w-screen  h-[380px]">
+    <div className="">
       <SearchBar />
-      <img src={cover} className="w-3/5 h-full border " />
+      {/* <img src={bgCover} className="w-3/5 h-full absolute " /> */}
     </div>
   );
 }
