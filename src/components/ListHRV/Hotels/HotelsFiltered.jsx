@@ -22,7 +22,7 @@ function HotelsFiltered({
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
-    scrollToPosition(0);
+    scrollToPosition(400);
   };
 
   const previousPage = () => {
@@ -75,16 +75,6 @@ function HotelsFiltered({
   console.log(unfilteredList, "unf");
   return (
     <div className="flex items-center mt-5 flex-col w-screen px-4 gap-2 md:flex-row  justify-center">
-      <div className="hidden relative xl:flex flex-col ml-4 z-10  self-start lg:w-[260px] h-[160px]">
-        <img className="w-full h-full" src={secondSide} alt="" />
-
-        <div className="absolute flex flex-col items-center w-full h-[1100px] top-40 bg-gradient-to-b from-white via-greenLight to-white">
-          <span>Beaches</span>
-          <p className="mt-40 text-center bg-gradient-to-r from-white to-green  text-xl  font-semibold font-serif">
-            Life is meant for good friends & great adventures
-          </p>
-        </div>
-      </div>
       <div className="hidden relative self-start h-[1460px]  md:flex flex-col items-center w-[260px] lg:w-[300px]">
         <div className="h-full w-full pb-8 absolute  bg-gradient-to-b from-white via-greenLight to-white z-4">
           <Sidebar

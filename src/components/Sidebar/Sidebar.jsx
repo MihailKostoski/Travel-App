@@ -13,10 +13,13 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
   return (
     <div className="w-full h-full ">
       {fil ? (
-        <div className="flex flex-col items-start">
+        <div className="flex flex-col items-start bg-gray-100   px-2 mr-2">
           {fil?.map((item) => (
             <div key={item.title}>
-              <button>{item.title}</button>
+              <button className="text-[rgb(45,167,144)] my-2">
+                {item.title}
+              </button>
+
               <ul>
                 <li>
                   {item?.filters?.slice(0, 5).map((i) => (
@@ -24,12 +27,12 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
                       <ul>
                         <li
                           className="flex flex-row justify-start gap-1
-                        items-center bg-gradient-to-r from-white via-greenLight"
+                        items-center "
                         >
                           <input
                             className="form-checkbox h-4 w-4 
                              appearance-none bg-white border-solid 
-                             border-black border-[1px] checked:bg-gradient-to-b from-brown"
+                             border-black border-[1px] checked:bg-[rgb(45,167,144)]"
                             type="checkbox"
                             onClick={() => handleSortClick(i.name)}
                           />

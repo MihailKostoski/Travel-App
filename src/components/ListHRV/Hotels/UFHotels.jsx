@@ -22,9 +22,9 @@ function UFHotels({
             key={hotelItem.id}
           >
             <div className="relative w-[800px] md:w-[400px] h-[340px]">
-              <div className="col-span-full flex bg-gray-400 rounded  flex-row justify-between  lg:col-start-1 lg:col-end-4">
+              <div className="col-span-full flex  rounded  flex-row justify-between  lg:col-start-1 lg:col-end-4">
                 <button
-                  className="bg-green rounded text-xs px-4 py-1"
+                  className="bg-[rgb(45,167,144)] rounded text-xs px-4 py-1"
                   onClick={() => handleOnClick(hotelItem.id)}
                 >
                   View
@@ -35,7 +35,7 @@ function UFHotels({
                   onClick={() => {
                     setNumImg(numImg > 0 ? numImg - 1 : 0);
                   }}
-                  className="hover:bg-greenLight/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
                 >
                   {" "}
                   <AiOutlineLeft />
@@ -48,7 +48,7 @@ function UFHotels({
                         : numImg
                     );
                   }}
-                  className="hover:bg-greenLight/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
                 >
                   <AiOutlineRight />
                 </button>
@@ -94,17 +94,13 @@ function UFHotels({
               <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
               <span
                 className="text-sm font-medium text-gray-900
-                 underline hover:no-underline dark:text-white"
+                  hover:no-underline dark:text-white"
               >
                 ({hotelItem.bubbleRating.count}) reviews
               </span>
             </div>
 
-            <div
-              className="w-full md:w-[200px]"
-
-              // px-6 pt-4 pb-2
-            >
+            <div className="w-full md:w-[200px]">
               <div className="flex flex-col mt-5 w-full items-start">
                 <span className="">#photography</span>
                 <span className="">#travel</span>

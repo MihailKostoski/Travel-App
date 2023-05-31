@@ -109,8 +109,8 @@ function AutoComplete() {
   return (
     <div>
       <div className="w-screen">
-        <div className="flex flex-row items-center justify-center">
-          <div className="w-[50%] ">
+        <div className="flex flex-row items-center justify-center ">
+          <div className="w-[40%] z-50 ">
             <ReactSearchAutocomplete
               items={
                 hotelsD?.length > 0

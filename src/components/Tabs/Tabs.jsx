@@ -14,15 +14,13 @@ function Tabs() {
 
   return (
     <>
-      <div className="flex w-full flex-row flex-nowrap overflow-x-auto gap-x-8 justify-center my-4">
-        <div className="flex items-center  w-32  h-16  hover:text-greenLight justify-center text-center md:w-36  md:h-20">
+      <div className="flex w-full  flex-row flex-nowrap overflow-x-auto gap-x-8 justify-center my-10">
+        <div className="flex items-center  w-32  h-16  hover:text-white justify-center text-center md:w-36  md:h-20">
           <div
             onClick={() => hotels()}
-            className={`flex justify-center h-full w-full  rounded-md gap-4 items-center px-8 py-5  ${
-              category === "hotels"
-                ? "bg-gradient-to-t from-greenLight via-green to-greenLight text-greenLight"
-                : "bg-gradient-to-t from-greenLight via-green to-greenLight"
-            }`}
+            className="flex justify-center h-full w-full  rounded-md gap-4 items-center px-8 py-5  
+            
+                bg-[rgb(45,167,144)] text-greenLight"
           >
             <span>Hotels</span>
             <span>
@@ -34,11 +32,7 @@ function Tabs() {
         <div className="flex items-center   w-32  h-16   hover:text-white justify-center   rounded text-center  md:w-36  md:h-20">
           <div
             onClick={() => vacationRentals()}
-            className={`flex justify-center h-full w-full rounded-md gap-4 items-center px-8 py-5 ${
-              category === "rentals"
-                ? "bg-gradient-to-t from-greenLight via-green to-greenLight text-greenLight"
-                : "bg-gradient-to-t from-greenLight via-green to-greenLight"
-            }`}
+            className="flex justify-center h-full w-full rounded-md gap-4 items-center px-8 py-5 bg-[rgb(45,167,144)] "
           >
             <span>Vacation Rentals</span>
             <span>
@@ -56,11 +50,7 @@ function Tabs() {
         <div className="flex items-center  w-32  h-16 hover:text-white justify-center rounded text-center  md:w-36  md:h-20 ">
           <div
             onClick={() => restauRants()}
-            className={`flex justify-center  h-full w-full rounded-md gap-4 items-center px-8 py-5 ${
-              category === "restaurant"
-                ? "bg-gradient-to-t from-greenLight via-green to-greenLight text-greenLight"
-                : "bg-gradient-to-t from-greenLight via-green to-greenLight"
-            }`}
+            className="flex justify-center  h-full w-full rounded-md gap-4 items-center px-8 py-5 bg-[rgb(45,167,144)]"
           >
             <span>Restaurants</span>
             <span>

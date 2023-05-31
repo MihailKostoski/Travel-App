@@ -31,11 +31,10 @@ function CalendarSearch({}) {
         <div className="relative ">
           <span
             onClick={() => setOpenDate(!openDate)}
-            className="headerSearchText w-[200px] h-[78px] cursor-pointer  flex  items-center gap-0.5 text-greenLight border border-solid p-5 bg-white md:w-full h-full"
+            className="headerSearchText w-[200px] h-[78px] cursor-pointer  flex  items-center gap-0.5 text-[rgb(45,167,144)] border border-solid p-5 bg-white md:w-full h-full"
           >
-            {" "}
             <div className=" flex  w-6 h-6 mr-1">
-              <AiFillCalendar className="w-full h-full  bg-greyD text-greenLight" />
+              <AiFillCalendar className="w-full h-full " />
             </div>
             {`${format(date[0]?.startDate, "MM/dd/yyyy")} to ${format(
               date[0]?.endDate,
@@ -48,25 +47,25 @@ function CalendarSearch({}) {
               onChange={(item) => setDate([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={date}
-              className="date bg-greenLight  absolute top-20 z-2"
+              className="date bg-gray-300 absolute white top-20 z-2"
               minDate={new Date()}
             />
           )}
         </div>
-
-        <div className=" relative ">
+        {/* /////////////////////////////////////////////////////////////////// */}
+        <div className="relative ">
           <span
             onClick={() => setOpenOptions(!openOptions)}
-            className="headerSearchText cursor-pointer flex w-[200px] h-[78px] items-center gap-0.5 text-greenLight  border border-solid p-5 bg-white md:w-full h-full"
+            className="headerSearchText cursor-pointer flex w-[200px] h-[78px] items-center gap-0.5 text-[rgb(45,167,144)]  border border-solid p-5 bg-white md:w-full h-full"
           >
             {" "}
             <div className="flex w-6 h-6 mr-1">
-              <BsPersonPlus className="w-full h-full bg-greyD text-greenLight" />
+              <BsPersonPlus className="w-full h-full text-[rgb(45,167,144)]" />
             </div>
             {`${options.adult} adult · ${options.children} children · ${options.room} room`}
           </span>
           {openOptions && (
-            <div className=" absolute top-20 bg-greenLight text-gray rounded-5 shadow-lg z-2 ">
+            <div className=" absolute top-20 bg-gray-300 text-gray rounded-5 shadow-lg z-2 ">
               <div className=" flex justify-between my-10 px-10">
                 <span className="optionText">Adult</span>
                 <div className=" flex items-center gap-10 text-black text-sm">
@@ -91,7 +90,7 @@ function CalendarSearch({}) {
                 <div className="  flex items-center gap-10 text-black text-sm">
                   <button
                     disabled={options.children <= 0}
-                    className="   w-30 h-30 border-solid border-2 border-blue-500 text-blue-500 rounded-full cursor-pointer bg-white"
+                    className="w-30 h-30 border-solid border-2 border-blue-500 text-blue-500 rounded-full cursor-pointer bg-white"
                     onClick={() => handleOption("children", "d")}
                   >
                     -
@@ -126,6 +125,7 @@ function CalendarSearch({}) {
               </div>
             </div>
           )}
+          {/* //////////////////////////////////// */}
         </div>
       </div>
     </>
