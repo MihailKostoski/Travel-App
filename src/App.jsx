@@ -6,11 +6,11 @@ import {
   VacationRentals,
 } from "./Pages/pagesIndex";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ShopProvider } from "./context";
+import { TravelProvider } from "./context";
 import SingleHotelReview from "./Pages/Hotels/Single/SingleHotelReview";
 function App() {
   return (
-    <ShopProvider>
+    <TravelProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" exact element={<Home />} />
@@ -27,7 +27,7 @@ function App() {
           <Route path="/tourism/:tourismId" element={<Tourism />} />
         </Routes>
       </BrowserRouter>
-    </ShopProvider>
+    </TravelProvider>
   );
 }
 

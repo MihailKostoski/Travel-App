@@ -37,7 +37,6 @@ function UFHotels({
                   }}
                   className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
                 >
-                  {" "}
                   <AiOutlineLeft />
                 </button>
                 <button

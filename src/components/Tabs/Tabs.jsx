@@ -7,10 +7,10 @@ import { RiHome3Line } from "react-icons/ri";
 import { FiMoreVertical } from "react-icons/fi";
 import { TfiWorld } from "react-icons/tfi";
 
-import useShop from "../../context";
+import useTravel from "../../context";
 
 function Tabs() {
-  const { hotels, vacationRentals, restauRants, category } = useShop();
+  const { hotels, vacationRentals, restauRants, category } = useTravel();
 
   return (
     <>

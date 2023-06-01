@@ -1,6 +1,13 @@
 import React from "react";
-
-function Pagination({ pageNumbers, paginate, previousPage, nextPage }) {
+import { useState } from "react";
+function Pagination({
+  pageNumbers,
+  paginate,
+  previousPage,
+  nextPage,
+  currentPage,
+}) {
+  console.log(currentPage, "currentpage");
   return (
     <>
       <div className="flex flex-row">
@@ -31,7 +38,9 @@ function Pagination({ pageNumbers, paginate, previousPage, nextPage }) {
             <li
               key={number}
               onClick={() => paginate(number)}
-              className="bg-gray-100 w-full px-2   rounded-md"
+              className={`w-full px-2 rounded-md ${
+                number === currentPage ? "bg-gray-300" : "bg-gray-100"
+              } `}
             >
               {number}
             </li>

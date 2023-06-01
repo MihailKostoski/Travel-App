@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
 
-import shopReducer from "./Reducer";
+import travelReducer from "./Reducer";
 
 const initial = {
   category: "hotels",
@@ -16,8 +16,8 @@ const initial = {
 
 export const TabsContext = createContext(initial);
 
-export const ShopProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(shopReducer, initial);
+export const TravelProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(travelReducer, initial);
 
   const hotels = () => {
     dispatch({
@@ -62,14 +62,14 @@ export const ShopProvider = ({ children }) => {
   return <TabsContext.Provider value={value}>{children}</TabsContext.Provider>;
 };
 
-const useShop = () => {
+const useTravel = () => {
   const context = useContext(TabsContext);
 
   if (context === undefined) {
-    throw new Error("useShop must be used within ShopContext");
+    throw new Error("useTravl must be used within TravelContext");
   }
 
   return context;
 };
 
-export default useShop;
+export default useTravel;

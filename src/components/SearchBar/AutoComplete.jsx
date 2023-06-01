@@ -4,7 +4,7 @@ import axios from "axios";
 import FormatResults from "./FormatResults";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useShop from "../../context";
+import useTravel from "../../context";
 
 // import { data } from "./object";
 import { restaurant } from "../../restuarant";
@@ -21,7 +21,7 @@ function AutoComplete() {
   const [vacationD, setVacationD] = useState();
   const navigate = useNavigate();
 
-  const { category } = useShop();
+  const { category } = useTravel();
   console.log(category);
 
   const handleOnSearch = (string) => {
@@ -145,6 +145,7 @@ function AutoComplete() {
                 height: "45px",
                 border: "1px solid #2ec4b6",
               }}
+              placeholder={`Search for ${category}`}
               resultStringKeyName="name"
               onSearch={handleOnSearch}
               onHover={handleOnHover}

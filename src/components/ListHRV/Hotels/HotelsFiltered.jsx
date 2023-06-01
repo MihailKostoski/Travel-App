@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import Sidebar from "../../../components/Sidebar/Sidebar";
-import secondSide from "../../../resources/secondSide.jpg";
-import sideImg from "../../../resources/side.jpg";
 import FLHotels from "./FLHotels";
 import UFHotels from "./UFHotels";
 import Pagination from "../../Paginate/Paginate";
@@ -95,7 +93,7 @@ function HotelsFiltered({
           currentId={currentId}
           setCurrentId={setCurrentId}
         />
-        <span>{}</span>
+
         <UFHotels
           unfilteredList={unfilteredList}
           setNumImg={setNumImg}
@@ -103,7 +101,9 @@ function HotelsFiltered({
           arrayConcated={arrayConcated}
         />
         <Pagination
-          className="flex"
+          className=""
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
           filteredList={filteredList}
           unfilteredList={unfilteredList}
           postsPerPage={postsPerPage}

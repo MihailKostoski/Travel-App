@@ -1,4 +1,4 @@
-export const shopReducer = (state, action) => {
+export const travelReducer = (state, action) => {
   switch (action.type) {
     case "HOTELS":
       return {
@@ -32,4 +32,4 @@ export const shopReducer = (state, action) => {
       return state;
   }
 };
-export default shopReducer;
+export default travelReducer;

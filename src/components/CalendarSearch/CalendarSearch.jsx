@@ -5,10 +5,10 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { AiFillCalendar } from "react-icons/ai";
 import { BsPersonPlus } from "react-icons/bs";
-import useShop from "../../context";
+import useTravel from "../../context";
 function CalendarSearch({}) {
   const [openDate, setOpenDate] = useState(false);
-  const { date, setDate } = useShop();
+  const { date, setDate } = useTravel();
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,

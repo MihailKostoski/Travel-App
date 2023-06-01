@@ -8,7 +8,7 @@ import { hotelFilter } from "../../components/SearchBar/hotelsFilter";
 import Tabs from "../../components/Tabs/Tabs";
 import { Navbar } from "../../components/componentsIndex";
 import { useNavigate } from "react-router-dom";
-import useShop from "../../context";
+import useTravel from "../../context";
 const options = {
   params: {
     //  geoId: "274707",
@@ -27,7 +27,7 @@ function Hotels() {
   const { hotelId } = useParams();
   const [dataList, setDataList] = useState();
   const [filterHotels, setFilterHotels] = useState();
-  const { category, date } = useShop();
+  const { category, date } = useTravel();
   const navigate = useNavigate();
 
   console.log(date, "date");
