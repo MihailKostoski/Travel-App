@@ -47,7 +47,7 @@ function CalendarSearch({}) {
               onChange={(item) => setDate([item.selection])}
               moveRangeOnFirstSelection={false}
               ranges={date}
-              className="date bg-gray-300 absolute white top-20 z-2"
+              className="date bg-gray-300 absolute white top-20 z-40"
               minDate={new Date()}
             />
           )}
@@ -65,7 +65,7 @@ function CalendarSearch({}) {
             {`${options.adult} adult · ${options.children} children · ${options.room} room`}
           </span>
           {openOptions && (
-            <div className=" absolute top-20 bg-gray-300 text-gray rounded-5 shadow-lg z-2 ">
+            <div className=" absolute top-20 bg-gray-300 text-gray rounded-5 shadow-lg z-50 ">
               <div className=" flex justify-between my-10 px-10">
                 <span className="optionText">Adult</span>
                 <div className=" flex items-center gap-10 text-black text-sm">

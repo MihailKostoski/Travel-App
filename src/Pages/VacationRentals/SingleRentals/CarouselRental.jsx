@@ -1,13 +1,14 @@
 import React from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-function Carousel({ singleItem, nextPage, previousPage, page }) {
+function CarouselRental({ singleData, nextPage, previousPage, page }) {
   return (
     <div>
       <div className="relative ">
         <div className="relative w-full overflow-hidden ">
           <div className="relative  float-left -mr-[100%] w-full !transform-none  transition-opacity duration-[600ms] ease-in-out motion-reduce:transition-none">
             <img
-              src={singleItem?.photos[page]?.urlTemplate
+              src={singleData?.photos[page]?.jumboUrl
+
                 .replace("{width}", "800")
                 .replace("{height}", "400")}
               className="block w-full"
@@ -39,4 +40,4 @@ function Carousel({ singleItem, nextPage, previousPage, page }) {
   );
 }
 
-export default Carousel;
+export default CarouselRental;

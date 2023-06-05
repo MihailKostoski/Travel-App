@@ -29,16 +29,15 @@ function HotelsFiltered({
       scrollToPosition(0);
     }
   };
-
-  const setPageNormal = () => {
-    setCurrentPage(1);
-  };
-
   const nextPage = () => {
-    if (currentPage !== Math.ceil(filteredList.length / postsPerPage)) {
+    if (currentPage !== Math.ceil(unfilteredList.length / postsPerPage)) {
       setCurrentPage(currentPage + 1);
       scrollToPosition(0);
     }
+  };
+
+  const setPageNormal = () => {
+    setCurrentPage(1);
   };
 
   const scrollToPosition = (position) => {
@@ -50,27 +49,23 @@ function HotelsFiltered({
   };
 
   const pageNumbers = [];
-  const array = filteredList.concat(unfilteredList);
-  console.log(array, "arr");
-  const arrayConcated =
-    array.length > 0 ? array.slice(indexOfFirstPost, indexOfLastPost) : null;
+
+  const arr =
+    unfilteredList.length > 0
+      ? unfilteredList.slice(indexOfFirstPost, indexOfLastPost)
+      : null;
 
   for (
     let i = 1;
     i <=
     Math.ceil(
-      filteredList.length > 0
-        ? filteredList.length / postsPerPage
-        : unfilteredList.length > 0
-        ? unfilteredList.length / postsPerPage
-        : null
+      unfilteredList.length > 0 ? unfilteredList.length / postsPerPage : null
     );
     i++
   ) {
     pageNumbers.push(i);
   }
 
-  console.log(unfilteredList, "unf");
   return (
     <div className="flex items-center mt-5 flex-col w-screen px-4 gap-2 md:flex-row  justify-center">
       <div className="hidden relative self-start h-[1460px]  md:flex flex-col items-center w-[260px] lg:w-[300px]">
@@ -87,7 +82,6 @@ function HotelsFiltered({
       <div className="flex flex-col">
         <FLHotels
           filteredList={filteredList}
-          arrayConcated={arrayConcated}
           setNumImg={setNumImg}
           numImg={numImg}
           currentId={currentId}
@@ -96,22 +90,24 @@ function HotelsFiltered({
 
         <UFHotels
           unfilteredList={unfilteredList}
+          arr={arr}
           setNumImg={setNumImg}
           numImg={numImg}
-          arrayConcated={arrayConcated}
         />
-        <Pagination
-          className=""
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          filteredList={filteredList}
-          unfilteredList={unfilteredList}
-          postsPerPage={postsPerPage}
-          paginate={paginate}
-          previousPage={previousPage}
-          nextPage={nextPage}
-          pageNumbers={pageNumbers}
-        />
+        <div className="flex flex-row justify-start items-center mt-7 md:mt-10">
+          <Pagination
+            className=""
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            arr={arr}
+            unfilteredList={unfilteredList}
+            postsPerPage={postsPerPage}
+            paginate={paginate}
+            previousPage={previousPage}
+            nextPage={nextPage}
+            pageNumbers={pageNumbers}
+          />
+        </div>
       </div>
     </div>
   );

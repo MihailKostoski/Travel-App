@@ -50,9 +50,12 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
           ))}
         </div>
       ) : filterRentals ? (
-        <div className="w-full h-full  flex flex-col items-center ">
-          <div className="w-full h-full ">
-            <div>{filterRentals.amenities.parameterName}</div>
+        <div className="w-full h-full  flex flex-col items-start bg-gray-200 px-2 mr-2">
+          <div className="w-full">
+            <div className="text-[rgb(45,167,144)] my-2">
+              {filterRentals.amenities.parameterName.charAt(0).toUpperCase() +
+                filterRentals.amenities.parameterName.slice(1)}
+            </div>
             {filterRentals.amenities.list?.slice(0, 5).map((item) => (
               <div key={item.id}>
                 <ul>
@@ -60,17 +63,17 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
                     <ul>
                       <li
                         className="flex flex-row justify-start gap-1
-                        items-center bg-gradient-to-r from-white via-greenLight"
+                        items-center"
                       >
                         <input
-                          className="form-checkbox h-5 w-5 
-                           appearance-none bg-white border-solid 
-                           border-black border-[1px] checked:bg-gradient-to-b from-brown"
+                          className="form-checkbox h-4 w-4 
+                          appearance-none bg-white border-solid 
+                          border-black border-[1px] checked:bg-[rgb(45,167,144)]"
                           type="checkbox"
                           onClick={() => handleSortClick(item.text)}
                         />
 
-                        <label className="text-lg font-medium font-sans">
+                        <label className="text-sm font-medium font-sans">
                           {item.text}
                         </label>
                       </li>
@@ -82,25 +85,28 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
             ))}
           </div>
 
-          <div className="w-full h-full ">
-            <div>{filterRentals.suitability.parameterName}</div>
+          <div className="w-full">
+            <div className="text-[rgb(45,167,144)] my-2">
+              {filterRentals.suitability.parameterName.charAt(0).toUpperCase() +
+                filterRentals.suitability.parameterName.slice(1)}
+            </div>
             {filterRentals.suitability.list?.slice(0, 5).map((item) => (
               <div key={item.id}>
                 <ul>
                   <li>
                     <ul>
                       <li
-                        className="flex flex-row justify-start gap-1 items-center
-                       bg-gradient-to-r from-white via-greenLight"
+                        className="flex flex-row justify-start gap-1
+                        items-center"
                       >
                         <input
-                          className="form-checkbox h-5 w-5 
+                          className="form-checkbox h-4 w-4 
                           appearance-none bg-white border-solid 
-                          border-black border-[1px] checked:bg-gradient-to-b from-brown"
+                          border-black border-[1px] checked:bg-[rgb(45,167,144)]"
                           type="checkbox"
                           onClick={() => handleSortClick(item.text)}
                         />
-                        <label className="text-lg font-medium font-sans">
+                        <label className="text-sm font-medium font-sans">
                           {" "}
                           {item.text}
                         </label>
@@ -112,22 +118,30 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
               </div>
             ))}
           </div>
-          <div className="w-full h-full ">
-            <div>{filterRentals.propertyTypes.parameterName}</div>
+          <div className="w-full">
+            <div className="text-[rgb(45,167,144)] my-2">
+              {filterRentals.propertyTypes.parameterName
+                .charAt(0)
+                .toUpperCase() +
+                filterRentals.propertyTypes.parameterName.slice(1)}
+            </div>
             {filterRentals.propertyTypes.list?.slice(0, 5).map((item) => (
               <div key={item.id}>
                 <ul>
                   <li>
                     <ul>
-                      <li className="flex flex-row justify-start gap-1 items-center bg-gradient-to-r from-white via-greenLight">
+                      <li
+                        className="flex flex-row justify-start gap-1
+                        items-center"
+                      >
                         <input
-                          className="form-checkbox h-5 w-5 
+                          className="form-checkbox h-4 w-4 
                           appearance-none bg-white border-solid 
-                          border-black border-[1px] checked:bg-gradient-to-b from-brown"
+                          border-black border-[1px] checked:bg-[rgb(45,167,144)]"
                           type="checkbox"
                           onClick={() => handleSortClick(item.text)}
                         />
-                        <label className="text-lg font-medium font-sans">
+                        <label className="text-sm font-medium font-sans">
                           {" "}
                           {item.text}
                         </label>
@@ -140,22 +154,30 @@ function Sidebar({ sort, setSort, filterHotels, filterRentals }) {
             ))}
           </div>
 
-          <div className="w-full h-full ">
-            <div>{filterRentals.distinctiveFeatures.parameterName}</div>
+          <div className="w-full">
+            <div className="text-[rgb(45,167,144)] my-2">
+              {filterRentals.distinctiveFeatures.parameterName
+                .charAt(0)
+                .toUpperCase() +
+                filterRentals.distinctiveFeatures.parameterName.slice(1)}
+            </div>
             {filterRentals.distinctiveFeatures.list?.slice(0, 5).map((item) => (
               <div key={item.id}>
                 <ul>
                   <li>
                     <ul>
-                      <li className="flex flex-row justify-start gap-1 items-center bg-gradient-to-r from-white via-greenLight">
+                      <li
+                        className="flex flex-row justify-start gap-1
+                        items-center"
+                      >
                         <input
-                          className="form-checkbox h-5 w-5 
+                          className="form-checkbox h-4 w-4 
                           appearance-none bg-white border-solid 
-                          border-black border-[1px] checked:bg-gradient-to-b from-brown"
+                          border-black border-[1px] checked:bg-[rgb(45,167,144)]"
                           type="checkbox"
                           onClick={() => handleSortClick(item.text)}
                         />
-                        <label className="text-lg font-medium font-sans">
+                        <label className="text-sm font-medium font-sans">
                           {" "}
                           {item.text}
                         </label>

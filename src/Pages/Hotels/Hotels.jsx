@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { hotels } from "../../components/SearchBar/hotels";
 import { CalendarSearch } from "../../components/componentsIndex";
 import ListHRV from "../../components/ListHRV/ListHRV";
 import { hotelFilter } from "../../components/SearchBar/hotelsFilter";
@@ -9,18 +8,10 @@ import Tabs from "../../components/Tabs/Tabs";
 import { Navbar } from "../../components/componentsIndex";
 import { useNavigate } from "react-router-dom";
 import useTravel from "../../context";
+import { baseUrl, headers } from "../../api/api";
+
 const options = {
-  params: {
-    //  geoId: "274707",
-    // checkIn: "2023-03-17",
-    // checkOut: "2023-03-17",
-    // pageNumber: "1",
-    // currencyCode: "USD",
-  },
-  headers: {
-    "X-RapidAPI-Key": "33cd884451msh63e77e0b0e4e5eep1e2adbjsnd4f06e3df30c",
-    "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
-  },
+  headers,
 };
 
 function Hotels() {
@@ -29,10 +20,7 @@ function Hotels() {
   const [filterHotels, setFilterHotels] = useState();
   const { category, date } = useTravel();
   const navigate = useNavigate();
-
-  console.log(date, "date");
   const pathName = window.location.pathname;
-  let id = parseInt("274707");
 
   let checkIn = date[0]?.startDate.toISOString().slice(0, 10);
   let checkOut = date[0]?.endDate.toISOString().slice(0, 10);
@@ -42,7 +30,6 @@ function Hotels() {
   });
 
   useEffect(() => {
-    setDataList(hotels);
     if (
       pathName !== "/" &&
       category === "restaurant" &&
@@ -65,18 +52,18 @@ function Hotels() {
       navigate("/vacationRentals/274707");
     }
 
-    // axios
-    //   .get(
-    //     `https://tripadvisor16.p.rapidapi.com/api/v1/hotels/searchHotels?geoId=${"187309"}&checkIn=${checkIn}&checkOut=${checkOut}`,
-    //     options
-    //   )
-    //   .then(function (response) {
-    //     setDataList(response.data);
-    //   })
+    axios
+      .get(
+        `${baseUrl}/hotels/searchHotels?geoId=${hotelId}&checkIn=${checkIn}&checkOut=${checkOut}`,
+        options
+      )
+      .then(function (response) {
+        setDataList(response.data);
+      })
 
-    //   .catch(function (error) {
-    //     console.error(error);
-    //   });
+      .catch(function (error) {
+        console.error(error);
+      });
   }, [hotelId, pathName, category, navigate, date]);
 
   return (

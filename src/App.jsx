@@ -8,6 +8,7 @@ import {
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { TravelProvider } from "./context";
 import SingleHotelReview from "./Pages/Hotels/Single/SingleHotelReview";
+import SingleRentals from "./Pages/VacationRentals/SingleRentals/SingleRentals";
 function App() {
   return (
     <TravelProvider>
@@ -20,6 +21,7 @@ function App() {
             path="/hotelReview/:reviewId"
             element={<SingleHotelReview />}
           />
+          <Route path="/rentalsReview/:reviewId" element={<SingleRentals />} />
           <Route
             path="/vacationRentals/:vacationId"
             element={<VacationRentals />}

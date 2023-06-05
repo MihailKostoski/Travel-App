@@ -16,18 +16,26 @@ function FLRental({ filteredListRental }) {
             className="flex flex-col items-start gap-5  md:flex-row justify-center"
             key={vacationItem.id}
           >
+            <div className="col-span-full flex  rounded  flex-row justify-between  lg:col-start-1 lg:col-end-4">
+              <button
+                className="bg-[rgb(45,167,144)] rounded text-xs px-4 py-1"
+                onClick={() => handleOnClick(vacationItem.id)}
+              >
+                View
+              </button>
+            </div>
             <div className="w-full md:w-2/4">
               <img className="w-full" src={demoImg} alt="" />
             </div>
             <div className="w-full md:w-1/4 whitespace-normal">
               <div className="w-full">{vacationItem.rental.name}</div>
-              <p className="w-full">
+              <div className="w-full">
                 {vacationItem.rental.averageRatingNumber}/10{" "}
                 <span>({vacationItem?.rental.userReviewCount} ) reviews </span>
-              </p>
+              </div>
             </div>
             <div className="w-full md:w-1/4">
-              <div className="flex-col w-full items-start">
+              <div className="flex flex-col w-full items-start">
                 <span className="">#photography</span>
                 <span className="">#travel</span>
               </div>

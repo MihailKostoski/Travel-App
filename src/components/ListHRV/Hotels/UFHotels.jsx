@@ -7,7 +7,7 @@ function UFHotels({
   setNumImg,
   currentId,
   setCurrentId,
-  arrayConcated,
+  arr,
 }) {
   const navigate = useNavigate();
   const handleOnClick = (id) => {
@@ -16,7 +16,7 @@ function UFHotels({
   return (
     <div>
       <div className="flex flex-col h-full gap-10  w-[400px] sm:w-[440px]  md:w-[580px] lg:w-[720px] ">
-        {arrayConcated?.map((hotelItem) => (
+        {arr?.map((hotelItem) => (
           <div
             className="flex flex-col items-start gap-5 w-full md:flex-row justify-center"
             key={hotelItem.id}
@@ -30,31 +30,34 @@ function UFHotels({
                   View
                 </button>
               </div>
-              <div className="flex justify-between absolute top left w-[400px] h-[400px] sm:h-[270px] w-[270px] md:w-[340px] md:h-[340px]">
+              <div className="flex justify-between absolute top left w-[400px] h-[400px] sm:h-[400px] w-[270px] md:w-[340px] md:h-[340px]">
                 <button
                   onClick={() => {
+                    console.log(numImg, "num");
+                    setCurrentId(hotelItem.id);
                     setNumImg(numImg > 0 ? numImg - 1 : 0);
                   }}
-                  className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-2 p-0 m-0 transition-all ease-in-out duration-300"
                 >
                   <AiOutlineLeft />
                 </button>
                 <button
                   onClick={(e) => {
+                    console.log("clicked");
+                    setCurrentId(hotelItem.id);
                     setNumImg(
                       numImg < hotelItem.cardPhotos.length - 1
                         ? numImg + 1
                         : numImg
                     );
                   }}
-                  className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-10 p-0 m-0 transition-all ease-in-out duration-300"
+                  className="hover:bg-[rgb(45,167,144)]/75 text-white w-10 h-full text-center opacity-75 hover:opacity-100 disabled:opacity-25 disabled:cursor-not-allowed z-2 p-0 m-0 transition-all ease-in-out duration-300"
                 >
                   <AiOutlineRight />
                 </button>
               </div>
               <img
                 className="self-center cursor-pointer"
-                onClick={() => handleOnClick(hotelItem.id)}
                 src={hotelItem?.cardPhotos?.[
                   `${currentId === hotelItem.id ? numImg : 0}`
                 ].sizes?.urlTemplate

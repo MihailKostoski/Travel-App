@@ -1,19 +1,12 @@
-import React, { useRef } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import axios from "axios";
 import FormatResults from "./FormatResults";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useTravel from "../../context";
-
-// import { data } from "./object";
-import { restaurant } from "../../restuarant";
-import { hotels } from "./hotels";
+import { baseUrl, headers } from "../../api/api";
 const options = {
-  headers: {
-    "X-RapidAPI-Key": "33cd884451msh63e77e0b0e4e5eep1e2adbjsnd4f06e3df30c",
-    "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
-  },
+  headers,
 };
 function AutoComplete() {
   const [restaurantsD, setRestaurantsD] = useState();
@@ -28,7 +21,7 @@ function AutoComplete() {
     if (string !== "") {
       axios
         .get(
-          `https://tripadvisor16.p.rapidapi.com/api/v1/${
+          `${baseUrl}/${
             category === undefined ? undefined : category
           }/searchLocation?query=${string}`,
           options
@@ -55,9 +48,6 @@ function AutoComplete() {
         });
     }
   };
-  console.log(hotelsD, "hotls");
-  console.log(restaurantsD, "restar");
-  console.log(vacationD, "rentals");
 
   let hot = hotelsD?.map((item) => ({
     id: parseFloat(item?.documentId),
