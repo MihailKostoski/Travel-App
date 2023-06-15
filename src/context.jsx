@@ -30,11 +30,7 @@ export const TravelProvider = ({ children }) => {
       type: "RESTAURANTS",
     });
   };
-  const vacationRentals = () => {
-    dispatch({
-      type: "VACATION_RENTALS",
-    });
-  };
+
   const setDate = (date) => {
     dispatch({
       type: "SET_DATE",
@@ -57,7 +53,6 @@ export const TravelProvider = ({ children }) => {
     date: state.date,
     setDate,
     restauRants,
-    vacationRentals,
   };
   return <TabsContext.Provider value={value}>{children}</TabsContext.Provider>;
 };

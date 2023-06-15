@@ -20,14 +20,14 @@ function FLHotels({
       <div
         className={`${
           filteredList.length > 0
-            ? "flex flex-col h-full gap-5   w-[400px] sm:w-[440px] md:mb-10 md:w-[580px] lg:w-[720px] "
+            ? "flex  flex-col h-full gap-5   w-[400px] sm:w-[440px] md:mb-10 md:w-[580px] lg:w-[720px] "
             : "hidden"
         }`}
       >
-        {filteredList?.map((hotelItem) => (
+        {filteredList?.map((hotelItem, index) => (
           <div
             className="flex flex-col items-start gap-5 w-full md:flex-row justify-center"
-            key={hotelItem.id}
+            key={index}
           >
             <div className="relative w-[800px] md:w-[400px] h-[340px]">
               <div className="col-span-full flex  rounded  flex-row justify-between  lg:col-start-1 lg:col-end-4">
@@ -38,7 +38,7 @@ function FLHotels({
                   View
                 </button>
               </div>
-              <div className="flex justify-between absolute top left w-[400px] h-[400px] sm:h-[400px] w-[270px] md:w-[340px] md:h-[340px]">
+              <div className="flex filtered justify-between absolute top left w-[400px] h-[400px] sm:h-[400px] w-[270px] md:w-[340px] md:h-[340px]">
                 <button
                   onClick={() => {
                     setNumImg(numImg > 0 ? numImg - 1 : 0);
@@ -104,6 +104,12 @@ function FLHotels({
                hover:no-underline dark:text-white"
               >
                 ({hotelItem.bubbleRating.count}) reviews
+              </span>
+              <span
+                className="text-sm mt-1  font-medium text-orange-700
+               hover:no-underline dark:text-white"
+              >
+                {hotelItem.primaryInfo !== "" ? hotelItem.primaryInfo : null}
               </span>
             </div>
 

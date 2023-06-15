@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import FLHotels from "./FLHotels";
 import UFHotels from "./UFHotels";
@@ -79,9 +79,11 @@ function HotelsFiltered({
           />
         </div>
       </div>
+
       <div className="flex flex-col">
         <FLHotels
           filteredList={filteredList}
+          unfilteredList={unfilteredList}
           setNumImg={setNumImg}
           numImg={numImg}
           currentId={currentId}
@@ -89,6 +91,7 @@ function HotelsFiltered({
         />
 
         <UFHotels
+          filteredList={filteredList}
           unfilteredList={unfilteredList}
           arr={arr}
           setNumImg={setNumImg}

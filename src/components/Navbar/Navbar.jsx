@@ -13,13 +13,13 @@ function Navbar() {
   return (
     <nav
       className="flex justify-between
-     items-center h-20 px-4 top-0 left-0 z-50 w-full bg-[rgb(45,167,144)]"
+     items-center h-20 px-4 z-50 w-full bg-[rgb(45,167,144)]"
     >
       <Link to="/" className="text-white">
         Beaches.
       </Link>
       {pathName !== "/" ? (
-        <div className="hidden md:flex relative ">
+        <div className="flex relative pr-10 ">
           <SearchBar />
         </div>
       ) : null}

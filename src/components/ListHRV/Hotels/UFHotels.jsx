@@ -13,13 +13,14 @@ function UFHotels({
   const handleOnClick = (id) => {
     navigate(`/hotelReview/${id}`);
   };
+  console.log(unfilteredList, "unf");
   return (
     <div>
       <div className="flex flex-col h-full gap-10  w-[400px] sm:w-[440px]  md:w-[580px] lg:w-[720px] ">
-        {arr?.map((hotelItem) => (
+        {arr?.map((hotelItem, index) => (
           <div
             className="flex flex-col items-start gap-5 w-full md:flex-row justify-center"
-            key={hotelItem.id}
+            key={index}
           >
             <div className="relative w-[800px] md:w-[400px] h-[340px]">
               <div className="col-span-full flex  rounded  flex-row justify-between  lg:col-start-1 lg:col-end-4">

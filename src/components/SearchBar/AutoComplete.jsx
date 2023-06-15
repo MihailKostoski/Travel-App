@@ -50,20 +50,24 @@ function AutoComplete() {
   };
 
   let hot = hotelsD?.map((item) => ({
-    id: parseFloat(item?.documentId),
+    id: parseInt(
+      item?.documentId
+        ?.replace(/(g|loc)/g, "")
+        .replace(/\b\d+\b/, "")
+        .replace(/;/g, "")
+    ),
     name: item?.title?.replace(/<\/?b>/g, ""),
     secondaryName: item.secondaryText,
     trackingItems: item.trackingItems,
   }));
 
   let rw = restaurantsD?.map((item) => ({
-    id: item?.locationId,
-    name: item?.localizedName,
-    secondaryName: item?.locationV2?.names?.longOnlyHierarchyTypeaheadV2,
-    placeType: item?.placeType,
-  }));
-  let vr = vacationD?.map((item) => ({
-    id: item?.locationId,
+    id: parseInt(
+      item?.documentId
+        ?.replace(/(g|loc)/g, "")
+        .replace(/\b\d+\b/, "")
+        .replace(/;/g, "")
+    ),
     name: item?.localizedName,
     secondaryName: item?.locationV2?.names?.longOnlyHierarchyTypeaheadV2,
     placeType: item?.placeType,
@@ -77,15 +81,11 @@ function AutoComplete() {
 
   const handleOnSelect = (item) => {
     if (category === "hotels") {
-      navigate(`/hotels/${item?.id}`);
+      navigate(`/hotels/${item.id}/${encodeURIComponent(item.name)}`);
     }
     if (category === "restaurant") {
-      navigate(`/restaurants/${item?.id}`);
+      navigate(`/restaurants/${item?.id}/${encodeURIComponent(item.name)}`);
     }
-    if (category === "rentals") {
-      navigate(`/vacationRentals/${item?.id}`);
-    }
-    console.log(item.route);
   };
 
   const formatResult = (item) => {
@@ -95,12 +95,18 @@ function AutoComplete() {
       </>
     );
   };
-
+  const pathName = window.location.pathname;
   return (
     <div>
       <div className="w-screen">
-        <div className="flex flex-row items-center justify-center ">
-          <div className="w-[40%] z-50 ">
+        <div
+          className={`${
+            pathName !== "/"
+              ? "flex flex-row items-center justify-center mr-[170px]"
+              : "flex flex-row items-center justify-center "
+          }`}
+        >
+          <div className="w-[80%] sm:w-[60%] md:w-[50%] z-50 ">
             <ReactSearchAutocomplete
               items={
                 hotelsD?.length > 0

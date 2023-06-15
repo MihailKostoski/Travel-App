@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Pagination } from "../componentsIndex";
+import { useNavigate } from "react-router-dom";
 function RestaurantList({ rest }) {
   console.log(rest, "rest");
   const [currentPage, setCurrentPage] = useState(1);
@@ -47,11 +48,15 @@ function RestaurantList({ rest }) {
     pageNumbers.push(i);
   }
 
+  const navigate = useNavigate();
+  const handleOnClick = (id) => {
+    navigate(`/restaurantReview/${id}`);
+  };
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="w-full px-20 grid grid-cols-1 items-center justify-center gap-8 mt-8 md:mt-16  md:grid-cols-2 lg:grid-cols-3">
-        {array?.map((restaurantItem) => (
-          <div key={restaurantItem.locationId}>
+        {array?.map((restaurantItem, index) => (
+          <div key={index}>
             <div className="bg-gray-300 px-1 rounded-md py-2">
               <img
                 className="w-full h-[300px]"
@@ -79,6 +84,14 @@ function RestaurantList({ rest }) {
               <div className="flex flex-row gap-2">
                 <span className="">#travel</span>
                 <span className="">#restaurants</span>
+              </div>
+              <div className="col-span-full flex  pr-2 rounded  flex-row justify-end lg:col-start-1 lg:col-end-4">
+                <button
+                  className="bg-[rgb(45,167,144)] rounded text-xs px-4 py-1"
+                  onClick={() => handleOnClick(restaurantItem.restaurantsId)}
+                >
+                  View
+                </button>
               </div>
             </div>
           </div>

@@ -12,33 +12,12 @@ const options = {
 
 function Restaurants() {
   const [restaurantData, setRestaurantData] = useState();
-  const { restaurantId } = useParams();
+  const { restaurantId, restaurantName } = useParams();
   const navigate = useNavigate();
   const { category } = useTravel();
-
   const pathName = window.location.pathname;
+
   useEffect(() => {
-    if (
-      pathName !== "/" &&
-      category === "restaurant" &&
-      pathName !== "/restaurants/274707"
-    ) {
-      navigate("/restaurants/274707");
-    }
-    if (
-      pathName !== "/" &&
-      category === "hotels" &&
-      pathName !== "/hotels/274707"
-    ) {
-      navigate("/hotels/274707");
-    }
-    if (
-      pathName !== "/" &&
-      category === "rentals" &&
-      pathName !== "/vacationRentals/27470"
-    ) {
-      navigate("/vacationRentals/274707");
-    }
     axios
       .get(
         `${baseUrl}/restaurant/searchRestaurants?locationId=${restaurantId}`,
@@ -50,7 +29,11 @@ function Restaurants() {
       .catch(function (error) {
         console.error(error);
       });
-  }, [restaurantId, pathName, category, navigate]);
+
+    if (category !== "restaurant") {
+      navigate(`/hotels/${restaurantId}/${restaurantName}`);
+    }
+  }, [restaurantId, category, navigate]);
   return (
     <>
       <div className="">
@@ -58,6 +41,11 @@ function Restaurants() {
           <Navbar />
         </div>
         <Tabs />
+        <div className="h-1/4  w-screen border border-solid border-grey flex flex-col justify-center items-center">
+          <h1 className="flex justify-center text-3xl p-5">
+            {restaurantName} Restaurants
+          </h1>
+        </div>
 
         <ListHRV restaurantData={restaurantData} />
       </div>

@@ -11,11 +11,6 @@ export const travelReducer = (state, action) => {
         ...state,
         category: "restaurant",
       };
-    case "VACATION_RENTALS":
-      return {
-        ...state,
-        category: "rentals",
-      };
 
     case "SET_DATE":
       return {
